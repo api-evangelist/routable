@@ -1,0 +1,115 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Routable
+providerId: routable
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Payments
+- Accounts Payable
+- Accounts Receivable
+- B2B Payments
+- Mass Payouts
+- FinTech
+- Plans
+description: >-
+  Routable uses a sales-led, custom pricing model. There is no public
+  self-service tier and no free plan; pricing is quoted per business based on
+  payment volume and feature needs. A monthly platform/subscription fee covers
+  API and developer access, with additional per-transaction fees that vary by
+  payment rail and speed (Routable supports multiple ACH and check speeds).
+  API and developer access is included in the platform fee. Specific dollar
+  amounts are not reconciled here because Routable does not publish a fixed
+  rate card; third-party listings report a platform fee that has been cited in
+  roughly the $599-$1,079 per month range, which should be confirmed with
+  Routable sales.
+notes: >-
+  Pricing is custom and sales-led; confirm current platform fee, transaction
+  fees, and rail-specific speed surcharges directly with Routable during
+  reconciliation. Third-party price points are indicative only.
+sources:
+- https://www.routable.com/pricing/
+- https://developers.routable.com/docs
+plans:
+- id: routable-platform
+  name: Platform (Custom)
+  type: subscription
+  description: >-
+    Sales-led subscription covering the Routable AP/AR platform, API and
+    developer access, vendor onboarding, and accounting-software integrations.
+    Quoted per business based on volume and needs.
+  entries:
+  - label: Platform Subscription
+    name: platform_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales (custom; indicatively ~$599-$1,079/mo per third-party listings)
+    userMultiplied: false
+  - label: ACH Transaction
+    name: ach_transaction
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-transaction fee varies by speed; contact sales
+    userMultiplied: false
+  - label: Check Transaction
+    name: check_transaction
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-transaction fee varies by speed; contact sales
+    userMultiplied: false
+  - label: International / SWIFT Transaction
+    name: international_transaction
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-transaction fee plus FX; contact sales
+    userMultiplied: false
+  elements:
+  - name: Accounts Payable Automation
+  - name: Accounts Receivable
+  - name: Mass Payouts
+  - name: Vendor Management
+  - name: API and Developer Access
+  - name: Accounting Software Integrations
+- id: routable-enterprise
+  name: Enterprise (Custom)
+  type: enterprise
+  description: >-
+    Higher-volume agreements with negotiated platform fees, transaction
+    pricing, dedicated support, and platform/marketplace use cases. Contact
+    Routable sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Dedicated Support
+  - name: Platform / Marketplace Payouts
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

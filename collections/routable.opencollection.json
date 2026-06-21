@@ -1,0 +1,526 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Routable API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/companies",
+            "body": {
+              "type": "json",
+              "data": "{\"name\": \"Acme Vendor LLC\", \"type\": \"vendor\", \"email\": \"ap@acmevendor.com\"}"
+            }
+          },
+          "docs": "Create a Company"
+        },
+        {
+          "info": {
+            "name": "List Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/companies"
+          },
+          "docs": "List Companies"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/companies/{id}"
+          },
+          "docs": "Retrieve a Company"
+        },
+        {
+          "info": {
+            "name": "Update a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.routable.com/v1/companies/{id}",
+            "body": {
+              "type": "json",
+              "data": "{\"name\": \"Acme Vendor LLC\"}"
+            }
+          },
+          "docs": "Update a Company"
+        },
+        {
+          "info": {
+            "name": "Archive a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/companies/{id}/archive"
+          },
+          "docs": "Archive a Company"
+        },
+        {
+          "info": {
+            "name": "Unarchive a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/companies/{id}/unarchive"
+          },
+          "docs": "Unarchive a Company"
+        },
+        {
+          "info": {
+            "name": "Invite a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/companies/{id}/invite"
+          },
+          "docs": "Invite a Company"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/contacts",
+            "body": {
+              "type": "json",
+              "data": "{\"company\": \"{company_id}\", \"first_name\": \"Jane\", \"last_name\": \"Doe\", \"email\": \"jane@acmevendor.com\"}"
+            }
+          },
+          "docs": "Create a Contact"
+        },
+        {
+          "info": {
+            "name": "List Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/contacts"
+          },
+          "docs": "List Contacts"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/contacts/{id}"
+          },
+          "docs": "Retrieve a Contact"
+        },
+        {
+          "info": {
+            "name": "Update a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.routable.com/v1/contacts/{id}",
+            "body": {
+              "type": "json",
+              "data": "{\"email\": \"jane@acmevendor.com\"}"
+            }
+          },
+          "docs": "Update a Contact"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payment Methods",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Payment Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payment_methods",
+            "body": {
+              "type": "json",
+              "data": "{\"company\": \"{company_id}\", \"type\": \"bank\", \"account_number\": \"000123456789\", \"routing_number\": \"110000000\", \"account_type\": \"checking\"}"
+            }
+          },
+          "docs": "Create a Payment Method"
+        },
+        {
+          "info": {
+            "name": "List Payment Methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/payment_methods"
+          },
+          "docs": "List Payment Methods"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Payment Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/payment_methods/{id}"
+          },
+          "docs": "Retrieve a Payment Method"
+        },
+        {
+          "info": {
+            "name": "Update a Payment Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.routable.com/v1/payment_methods/{id}",
+            "body": {
+              "type": "json",
+              "data": "{\"account_type\": \"savings\"}"
+            }
+          },
+          "docs": "Update a Payment Method"
+        },
+        {
+          "info": {
+            "name": "Validate a Payment Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payment_methods/validate",
+            "body": {
+              "type": "json",
+              "data": "{\"type\": \"bank\", \"account_number\": \"000123456789\", \"routing_number\": \"110000000\"}"
+            }
+          },
+          "docs": "Validate a Payment Method"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Funding Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Funding Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/settings/accounts"
+          },
+          "docs": "List Funding Accounts"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Funding Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/settings/accounts/{id}"
+          },
+          "docs": "Retrieve a Funding Account"
+        },
+        {
+          "info": {
+            "name": "Retrieve Routable Balance Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/settings/accounts/balance"
+          },
+          "docs": "Retrieve Routable Balance Account"
+        },
+        {
+          "info": {
+            "name": "Deposit Funds into Routable Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/settings/accounts/{id}/deposit",
+            "body": {
+              "type": "json",
+              "data": "{\"amount\": \"1000.00\"}"
+            }
+          },
+          "docs": "Deposit Funds into Routable Balance"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payables",
+            "body": {
+              "type": "json",
+              "data": "{\"company\": \"{company_id}\", \"amount\": \"500.00\", \"currency\": \"USD\", \"reference_code\": \"INV-1001\", \"due_date\": \"2026-07-15\"}"
+            }
+          },
+          "docs": "Create a Payable"
+        },
+        {
+          "info": {
+            "name": "List Payables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/payables"
+          },
+          "docs": "List Payables"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/payables/{id}"
+          },
+          "docs": "Retrieve a Payable"
+        },
+        {
+          "info": {
+            "name": "Update a Payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.routable.com/v1/payables/{id}",
+            "body": {
+              "type": "json",
+              "data": "{\"due_date\": \"2026-07-20\"}"
+            }
+          },
+          "docs": "Update a Payable"
+        },
+        {
+          "info": {
+            "name": "Cancel a Payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payables/{id}/cancel"
+          },
+          "docs": "Cancel a Payable"
+        },
+        {
+          "info": {
+            "name": "Send a Payable Reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payables/{id}/remind"
+          },
+          "docs": "Send a Payable Reminder"
+        },
+        {
+          "info": {
+            "name": "Estimate Fees for a Payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payables/{id}/estimate"
+          },
+          "docs": "Estimate Fees for a Payable"
+        },
+        {
+          "info": {
+            "name": "Download Confirmation PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/payables/{id}/confirmation"
+          },
+          "docs": "Download Confirmation PDF"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Receivables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Receivable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/receivables",
+            "body": {
+              "type": "json",
+              "data": "{\"company\": \"{company_id}\", \"amount\": \"750.00\", \"currency\": \"USD\", \"reference_code\": \"AR-2001\", \"due_date\": \"2026-07-15\"}"
+            }
+          },
+          "docs": "Create a Receivable"
+        },
+        {
+          "info": {
+            "name": "List Receivables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/receivables"
+          },
+          "docs": "List Receivables"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Receivable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/receivables/{id}"
+          },
+          "docs": "Retrieve a Receivable"
+        },
+        {
+          "info": {
+            "name": "Update a Receivable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.routable.com/v1/receivables/{id}",
+            "body": {
+              "type": "json",
+              "data": "{\"due_date\": \"2026-07-20\"}"
+            }
+          },
+          "docs": "Update a Receivable"
+        },
+        {
+          "info": {
+            "name": "Cancel a Receivable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/receivables/{id}/cancel"
+          },
+          "docs": "Cancel a Receivable"
+        },
+        {
+          "info": {
+            "name": "Send a Receivable Reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/receivables/{id}/remind"
+          },
+          "docs": "Send a Receivable Reminder"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhook Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/webhook_events"
+          },
+          "docs": "List Webhook Events"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Webhook Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/webhook_events/{id}"
+          },
+          "docs": "Retrieve a Webhook Event"
+        },
+        {
+          "info": {
+            "name": "Retry a Webhook Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/webhook_events/{id}/retry"
+          },
+          "docs": "Retry a Webhook Event"
+        }
+      ]
+    }
+  ]
+}

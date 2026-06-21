@@ -1,0 +1,105 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Routable
+providerId: routable
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Payments
+- Accounts Payable
+- Accounts Receivable
+- B2B Payments
+- Mass Payouts
+- FinTech
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Routable spend. Routable bills a sales-led monthly platform
+  subscription (which includes API and developer access) plus per-transaction
+  fees that vary by payment rail (ACH, check, international/SWIFT) and by the
+  selected payment speed. International payments also incur currency-conversion
+  costs. Exact rates are custom and not reconciled here.
+notes: >-
+  Per-transaction and rail/speed-specific fees are quoted per business; verify
+  the platform fee and transaction pricing with Routable sales during
+  reconciliation.
+sources:
+- https://www.routable.com/pricing/
+- https://developers.routable.com/docs
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Routable
+serviceCategory: Financial Services
+billingModel:
+  pricingCategory: Subscription Plus Usage
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Routable
+  ServiceCategory: Financial Services
+  ProviderName: Routable
+  PublisherName: Routable
+  InvoiceIssuerName: Routable
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription Plus Usage
+meters:
+- name: platform_subscription
+  description: Monthly sales-led platform/subscription fee covering AP/AR, mass payouts, and API access.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+- name: ach_transactions
+  description: ACH payable/receivable transactions, priced per transaction by speed.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - account
+  - speed
+- name: check_transactions
+  description: Check payments, priced per transaction by speed.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - account
+  - speed
+- name: international_transactions
+  description: International/SWIFT payouts, priced per transaction plus FX conversion.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+  - currency
+- name: fx_conversion
+  description: Currency conversion applied to cross-border payouts.
+  unit: amount
+  aggregation: sum
+  dimensions:
+  - account
+  - currency
+principles:
+- name: Visibility
+  description: Pull Routable transaction and invoice data; track fees by payment rail and speed.
+- name: Allocation
+  description: Tag payables/receivables and API keys per team or entity; map to cost centers.
+- name: Optimization
+  description: Choose the slowest acceptable ACH/check speed to minimize per-transaction fees; batch mass payouts; avoid unnecessary international FX.
+- name: Accountability
+  description: Assign owners per workflow; review platform fee and transaction spend monthly against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

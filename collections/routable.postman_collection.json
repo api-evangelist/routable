@@ -1,0 +1,1213 @@
+{
+  "info": {
+    "name": "Routable API",
+    "description": "Routable v1 REST API for B2B payments, accounts payable and receivable, mass payouts, and vendor management.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Companies",
+      "item": [
+        {
+          "name": "Create a Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/companies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ]
+            },
+            "description": "Create a Company",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Acme Vendor LLC\",\n  \"type\": \"vendor\",\n  \"email\": \"ap@acmevendor.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Companies",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/companies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ]
+            },
+            "description": "List Companies"
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a Company",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/companies/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies",
+                ":id"
+              ]
+            },
+            "description": "Retrieve a Company"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Company",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/companies/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies",
+                ":id"
+              ]
+            },
+            "description": "Update a Company",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Acme Vendor LLC\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Archive a Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/companies/:id/archive",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies",
+                ":id",
+                "archive"
+              ]
+            },
+            "description": "Archive a Company"
+          },
+          "response": []
+        },
+        {
+          "name": "Unarchive a Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/companies/:id/unarchive",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies",
+                ":id",
+                "unarchive"
+              ]
+            },
+            "description": "Unarchive a Company"
+          },
+          "response": []
+        },
+        {
+          "name": "Invite a Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/companies/:id/invite",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies",
+                ":id",
+                "invite"
+              ]
+            },
+            "description": "Invite a Company"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "Create a Contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/contacts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts"
+              ]
+            },
+            "description": "Create a Contact",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"{company_id}\",\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Doe\",\n  \"email\": \"jane@acmevendor.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Contacts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/contacts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts"
+              ]
+            },
+            "description": "List Contacts"
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a Contact",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/contacts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts",
+                ":id"
+              ]
+            },
+            "description": "Retrieve a Contact"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Contact",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/contacts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contacts",
+                ":id"
+              ]
+            },
+            "description": "Update a Contact",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"jane@acmevendor.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payment Methods",
+      "item": [
+        {
+          "name": "Create a Payment Method",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payment_methods",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment_methods"
+              ]
+            },
+            "description": "Create a Payment Method",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"{company_id}\",\n  \"type\": \"bank\",\n  \"account_number\": \"000123456789\",\n  \"routing_number\": \"110000000\",\n  \"account_type\": \"checking\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Payment Methods",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payment_methods",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment_methods"
+              ]
+            },
+            "description": "List Payment Methods"
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a Payment Method",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payment_methods/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment_methods",
+                ":id"
+              ]
+            },
+            "description": "Retrieve a Payment Method"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Payment Method",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payment_methods/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment_methods",
+                ":id"
+              ]
+            },
+            "description": "Update a Payment Method",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_type\": \"savings\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Validate a Payment Method",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payment_methods/validate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payment_methods",
+                "validate"
+              ]
+            },
+            "description": "Validate a Payment Method",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"bank\",\n  \"account_number\": \"000123456789\",\n  \"routing_number\": \"110000000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Funding Sources",
+      "item": [
+        {
+          "name": "List Funding Accounts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/settings/accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "settings",
+                "accounts"
+              ]
+            },
+            "description": "List Funding Accounts"
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a Funding Account",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/settings/accounts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "settings",
+                "accounts",
+                ":id"
+              ]
+            },
+            "description": "Retrieve a Funding Account"
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve Routable Balance Account",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/settings/accounts/balance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "settings",
+                "accounts",
+                "balance"
+              ]
+            },
+            "description": "Retrieve Routable Balance Account"
+          },
+          "response": []
+        },
+        {
+          "name": "Deposit Funds into Routable Balance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/settings/accounts/:id/deposit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "settings",
+                "accounts",
+                ":id",
+                "deposit"
+              ]
+            },
+            "description": "Deposit Funds into Routable Balance",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"1000.00\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payables",
+      "item": [
+        {
+          "name": "Create a Payable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payables",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payables"
+              ]
+            },
+            "description": "Create a Payable",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"{company_id}\",\n  \"amount\": \"500.00\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"INV-1001\",\n  \"due_date\": \"2026-07-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Payables",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payables",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payables"
+              ]
+            },
+            "description": "List Payables"
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a Payable",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payables/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payables",
+                ":id"
+              ]
+            },
+            "description": "Retrieve a Payable"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Payable",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payables/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payables",
+                ":id"
+              ]
+            },
+            "description": "Update a Payable",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"due_date\": \"2026-07-20\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel a Payable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payables/:id/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payables",
+                ":id",
+                "cancel"
+              ]
+            },
+            "description": "Cancel a Payable"
+          },
+          "response": []
+        },
+        {
+          "name": "Send a Payable Reminder",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payables/:id/remind",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payables",
+                ":id",
+                "remind"
+              ]
+            },
+            "description": "Send a Payable Reminder"
+          },
+          "response": []
+        },
+        {
+          "name": "Estimate Fees for a Payable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payables/:id/estimate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payables",
+                ":id",
+                "estimate"
+              ]
+            },
+            "description": "Estimate Fees for a Payable"
+          },
+          "response": []
+        },
+        {
+          "name": "Download Confirmation PDF",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/payables/:id/confirmation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payables",
+                ":id",
+                "confirmation"
+              ]
+            },
+            "description": "Download Confirmation PDF"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Receivables",
+      "item": [
+        {
+          "name": "Create a Receivable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/receivables",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receivables"
+              ]
+            },
+            "description": "Create a Receivable",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"{company_id}\",\n  \"amount\": \"750.00\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"AR-2001\",\n  \"due_date\": \"2026-07-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Receivables",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/receivables",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receivables"
+              ]
+            },
+            "description": "List Receivables"
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a Receivable",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/receivables/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receivables",
+                ":id"
+              ]
+            },
+            "description": "Retrieve a Receivable"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Receivable",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/receivables/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receivables",
+                ":id"
+              ]
+            },
+            "description": "Update a Receivable",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"due_date\": \"2026-07-20\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel a Receivable",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/receivables/:id/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receivables",
+                ":id",
+                "cancel"
+              ]
+            },
+            "description": "Cancel a Receivable"
+          },
+          "response": []
+        },
+        {
+          "name": "Send a Receivable Reminder",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/receivables/:id/remind",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "receivables",
+                ":id",
+                "remind"
+              ]
+            },
+            "description": "Send a Receivable Reminder"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List Webhook Events",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/webhook_events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook_events"
+              ]
+            },
+            "description": "List Webhook Events"
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a Webhook Event",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/webhook_events/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook_events",
+                ":id"
+              ]
+            },
+            "description": "Retrieve a Webhook Event"
+          },
+          "response": []
+        },
+        {
+          "name": "Retry a Webhook Event",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.routable.com/v1/webhook_events/:id/retry",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook_events",
+                ":id",
+                "retry"
+              ]
+            },
+            "description": "Retry a Webhook Event"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.routable.com/v1",
+      "type": "string"
+    },
+    {
+      "key": "bearerToken",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+aid: routable
+url: https://raw.githubusercontent.com/api-evangelist/routable/refs/heads/main/apis.yml
+name: Routable
+kind: company
+description: Routable is a B2B payments platform automating accounts payable and
+  accounts receivable, mass payouts, and vendor management. Its API-first REST API
+  lets teams onboard vendors and customers, collect payment and tax information,
+  create payables and receivables, and move money via ACH, SWIFT, and check to more
+  than 200 countries, with webhook events for end-to-end automation.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Payments
+- Accounts Payable
+- Accounts Receivable
+- B2B Payments
+- Mass Payouts
+- FinTech
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: routable:vendors
+  name: Routable Vendors API
+  tags:
+  - Vendors
+  - Companies
+  - Onboarding
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.routable.com/reference/introduction
+  baseURL: https://api.routable.com/v1
+  properties:
+  - url: https://developers.routable.com/docs/companies-1
+    type: Documentation
+  - url: https://developers.routable.com/reference/introduction
+    type: APIReference
+  - url: openapi/routable-openapi.yml
+    type: OpenAPI
+  - url: collections/routable.postman_collection.json
+    type: PostmanCollection
+  - url: collections/routable.opencollection.json
+    type: OpenCollection
+  description: Create, list, update, archive, and invite vendor companies, manage
+    their contacts and payment methods, and collect tax and compliance information
+    before paying them.
+- aid: routable:customers
+  name: Routable Customers API
+  tags:
+  - Customers
+  - Companies
+  - Onboarding
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.routable.com/reference/introduction
+  baseURL: https://api.routable.com/v1
+  properties:
+  - url: https://developers.routable.com/docs/companies-1
+    type: Documentation
+  - url: https://developers.routable.com/reference/introduction
+    type: APIReference
+  - url: openapi/routable-openapi.yml
+    type: OpenAPI
+  - url: collections/routable.postman_collection.json
+    type: PostmanCollection
+  - url: collections/routable.opencollection.json
+    type: OpenCollection
+  description: Manage customer companies and their contacts that you bill through
+    receivables, using the same Companies resource that represents both vendors and
+    customers.
+- aid: routable:payables
+  name: Routable Payables API
+  tags:
+  - Payables
+  - Accounts Payable
+  - Bills
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.routable.com/docs/payables-1
+  baseURL: https://api.routable.com/v1
+  properties:
+  - url: https://developers.routable.com/docs/payables-1
+    type: Documentation
+  - url: https://developers.routable.com/reference/introduction
+    type: APIReference
+  - url: openapi/routable-openapi.yml
+    type: OpenAPI
+  - url: collections/routable.postman_collection.json
+    type: PostmanCollection
+  - url: collections/routable.opencollection.json
+    type: OpenCollection
+  description: Create, list, update, and cancel payables (bills owed to vendors),
+    estimate fees, send reminders, and download confirmation PDFs to automate the
+    accounts payable workflow.
+- aid: routable:receivables
+  name: Routable Receivables API
+  tags:
+  - Receivables
+  - Accounts Receivable
+  - Invoices
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.routable.com/docs/receivables-1
+  baseURL: https://api.routable.com/v1
+  properties:
+  - url: https://developers.routable.com/docs/receivables-1
+    type: Documentation
+  - url: https://developers.routable.com/reference/introduction
+    type: APIReference
+  - url: openapi/routable-openapi.yml
+    type: OpenAPI
+  - url: collections/routable.postman_collection.json
+    type: PostmanCollection
+  - url: collections/routable.opencollection.json
+    type: OpenCollection
+  description: Create, list, update, and cancel receivables (amounts owed to you by
+    customers) and send reminders to automate the accounts receivable workflow.
+- aid: routable:payments
+  name: Routable Payments API
+  tags:
+  - Payments
+  - ACH
+  - SWIFT
+  - Check
+  - Mass Payouts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.routable.com/docs/payment-methods-1
+  baseURL: https://api.routable.com/v1
+  properties:
+  - url: https://developers.routable.com/docs/payment-methods-1
+    type: Documentation
+  - url: https://developers.routable.com/reference/introduction
+    type: APIReference
+  - url: openapi/routable-openapi.yml
+    type: OpenAPI
+  - url: collections/routable.postman_collection.json
+    type: PostmanCollection
+  - url: collections/routable.opencollection.json
+    type: OpenCollection
+  description: Create, validate, and manage payment methods (bank, international,
+    and check) and estimate currency conversions and fees for payments to vendors
+    in more than 200 countries via ACH, SWIFT, and check.
+- aid: routable:funding-sources
+  name: Routable Funding Sources API
+  tags:
+  - Funding Sources
+  - Accounts
+  - Balance
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.routable.com/docs/collecting-payment-information
+  baseURL: https://api.routable.com/v1
+  properties:
+  - url: https://developers.routable.com/docs/collecting-payment-information
+    type: Documentation
+  - url: https://developers.routable.com/reference/introduction
+    type: APIReference
+  - url: openapi/routable-openapi.yml
+    type: OpenAPI
+  - url: collections/routable.postman_collection.json
+    type: PostmanCollection
+  - url: collections/routable.opencollection.json
+    type: OpenCollection
+  description: List and retrieve your organization's funding accounts, retrieve the
+    Routable Balance account, and deposit funds into the balance to source payments.
+- aid: routable:webhooks
+  name: Routable Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.routable.com/docs/webhooks
+  baseURL: https://api.routable.com/v1
+  properties:
+  - url: https://developers.routable.com/docs/webhooks
+    type: Documentation
+  - url: https://developers.routable.com/reference/introduction
+    type: APIReference
+  - url: openapi/routable-openapi.yml
+    type: OpenAPI
+  - url: collections/routable.postman_collection.json
+    type: PostmanCollection
+  - url: collections/routable.opencollection.json
+    type: OpenCollection
+  description: List and retrieve webhook events emitted by Routable and retry failed
+    deliveries to keep external systems synchronized with payment lifecycle changes.
+common:
+- type: GitHubOrganization
+  url: https://github.com/routablehq
+- type: LinkedIn
+  url: https://www.linkedin.com/company/routable
+- type: Website
+  url: https://www.routable.com/
+- type: Documentation
+  url: https://developers.routable.com/docs
+- type: Plans
+  url: plans/routable-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/routable-rate-limits.yml
+- type: FinOps
+  url: finops/routable-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

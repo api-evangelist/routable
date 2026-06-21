@@ -1,0 +1,90 @@
+aid: routable
+name: Routable
+review:
+  question: Does Routable expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Routable's only documented event delivery mechanism is outbound HTTP
+    webhooks (webhook events queryable and retryable via the REST API). No
+    WebSocket and no Server-Sent Events surface is documented, so no AsyncAPI
+    document was authored. If webhook modeling is later brought into AsyncAPI
+    scope, the webhook_events resource would be the channel to model.
+findings:
+  summary: |
+    Routable does not publish a documented public WebSocket API. The Routable
+    platform exposes a RESTful v1 HTTP API under https://api.routable.com/v1,
+    using JSON over HTTPS and Bearer API-token authentication. Event-driven
+    integration is delivered via outbound HTTP webhooks; webhook events can be
+    listed, retrieved, and retried through REST endpoints. No realtime,
+    bidirectional WebSocket (ws:// or wss://) endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.routable.com/v1
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound HTTP webhook deliveries; events are queryable and retryable via REST (/webhook_events).
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Routable's API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.routable.com/v1/companies
+    - GET    https://api.routable.com/v1/companies
+    - GET    https://api.routable.com/v1/companies/{id}
+    - PATCH  https://api.routable.com/v1/companies/{id}
+    - POST   https://api.routable.com/v1/companies/{id}/archive
+    - POST   https://api.routable.com/v1/companies/{id}/unarchive
+    - POST   https://api.routable.com/v1/companies/{id}/invite
+    - POST   https://api.routable.com/v1/contacts
+    - GET    https://api.routable.com/v1/contacts
+    - GET    https://api.routable.com/v1/contacts/{id}
+    - PATCH  https://api.routable.com/v1/contacts/{id}
+    - POST   https://api.routable.com/v1/payment_methods
+    - GET    https://api.routable.com/v1/payment_methods
+    - GET    https://api.routable.com/v1/payment_methods/{id}
+    - PATCH  https://api.routable.com/v1/payment_methods/{id}
+    - POST   https://api.routable.com/v1/payment_methods/validate
+    - GET    https://api.routable.com/v1/settings/accounts
+    - GET    https://api.routable.com/v1/settings/accounts/{id}
+    - GET    https://api.routable.com/v1/settings/accounts/balance
+    - POST   https://api.routable.com/v1/settings/accounts/{id}/deposit
+    - POST   https://api.routable.com/v1/payables
+    - GET    https://api.routable.com/v1/payables
+    - GET    https://api.routable.com/v1/payables/{id}
+    - PATCH  https://api.routable.com/v1/payables/{id}
+    - POST   https://api.routable.com/v1/payables/{id}/cancel
+    - POST   https://api.routable.com/v1/payables/{id}/remind
+    - POST   https://api.routable.com/v1/payables/{id}/estimate
+    - GET    https://api.routable.com/v1/payables/{id}/confirmation
+    - POST   https://api.routable.com/v1/receivables
+    - GET    https://api.routable.com/v1/receivables
+    - GET    https://api.routable.com/v1/receivables/{id}
+    - PATCH  https://api.routable.com/v1/receivables/{id}
+    - POST   https://api.routable.com/v1/receivables/{id}/cancel
+    - POST   https://api.routable.com/v1/receivables/{id}/remind
+    - GET    https://api.routable.com/v1/webhook_events
+    - GET    https://api.routable.com/v1/webhook_events/{id}
+    - POST   https://api.routable.com/v1/webhook_events/{id}/retry
+sources:
+  - url: https://developers.routable.com/reference/introduction
+    type: APIReference
+    note: Introduction describes a RESTful JSON-over-HTTPS API, Bearer token auth, and a 600 req/min default rate limit.
+  - url: https://developers.routable.com/docs
+    type: Documentation
+    note: Developer portal; all documented endpoints are HTTPS REST. Events are delivered via outbound webhooks.
+  - url: https://developers.routable.com/docs/webhooks
+    type: Documentation
+    note: Webhook events delivered over outbound HTTPS; queryable and retryable via REST, not WebSocket.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists. Routable's eventing is
+    outbound HTTP webhooks only, which is out of current AsyncAPI scope for
+    this catalog, so no AsyncAPI document was created.

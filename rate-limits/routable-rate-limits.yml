@@ -1,0 +1,47 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Routable
+providerId: routable
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Payments
+- Accounts Payable
+- Accounts Receivable
+- B2B Payments
+- Mass Payouts
+- FinTech
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Routable v1 API enforces a default rate limit of 600 requests per minute
+  per account. Requests beyond the limit are throttled. Idempotency keys are
+  supported so create requests can be safely retried after backoff. Specific
+  per-endpoint limits beyond the documented default are not reconciled in this
+  artifact.
+notes: >-
+  Confirm the current default request-per-minute limit and any per-endpoint or
+  per-environment differences (production vs. sandbox) in Routable's developer
+  documentation during reconciliation.
+sources:
+- https://developers.routable.com/reference/introduction
+- https://developers.routable.com/docs
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: 600 per minute (default)
+  notes: Default account-level request rate limit documented by Routable; exceeding it returns 429.
+policies:
+- name: Idempotency
+  description: Use idempotency keys on create requests so retries after a 429 do not duplicate payments.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
