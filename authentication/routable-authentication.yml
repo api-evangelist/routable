@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/routable-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'API token presented as `Authorization: Bearer {your_token}`. Generate tokens
+    in the Routable dashboard. A sandbox environment is available for testing without moving
+    real money.'
+  sources:
+  - openapi/routable-openapi.yml

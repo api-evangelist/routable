@@ -180,6 +180,10 @@ apis:
   description: List and retrieve webhook events emitted by Routable and retry failed
     deliveries to keep external systems synchronized with payment lifecycle changes.
 common:
+- type: DomainSecurity
+  url: security/routable-domain-security.yml
+- type: Authentication
+  url: authentication/routable-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/routablehq
 - type: LinkedIn
