@@ -180,6 +180,8 @@ apis:
   description: List and retrieve webhook events emitted by Routable and retry failed
     deliveries to keep external systems synchronized with payment lifecycle changes.
 common:
+- type: AgenticAccess
+  url: agentic-access/routable-agentic-access.yml
 - type: DomainSecurity
   url: security/routable-domain-security.yml
 - type: Authentication
