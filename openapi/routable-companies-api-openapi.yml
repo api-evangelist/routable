@@ -1,0 +1,241 @@
+openapi: 3.0.1
+info:
+  title: Routable Companies API
+  description: Specification of the Routable v1 REST API for B2B payments, accounts payable and receivable automation, and mass payouts. Manage vendor and customer companies, contacts, payment methods, funding accounts, payables, receivables, and webhook events. All requests are JSON over HTTPS and authenticated with a Bearer API token.
+  termsOfService: https://www.routable.com/terms-of-service/
+  contact:
+    name: Routable Support
+    url: https://developers.routable.com/docs
+  version: '1.0'
+servers:
+- url: https://api.routable.com/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Companies
+  description: Vendor and customer companies.
+paths:
+  /companies:
+    get:
+      operationId: listCompanies
+      tags:
+      - Companies
+      summary: List companies
+      description: Returns a paginated list of vendor and customer companies.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/StartingAfter'
+      responses:
+        '200':
+          description: A list of companies.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyList'
+    post:
+      operationId: createCompany
+      tags:
+      - Companies
+      summary: Create a company
+      description: Creates a new vendor or customer company.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyCreate'
+      responses:
+        '201':
+          description: The created company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+  /companies/{id}:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    get:
+      operationId: retrieveCompany
+      tags:
+      - Companies
+      summary: Retrieve a company
+      responses:
+        '200':
+          description: The requested company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+    patch:
+      operationId: updateCompany
+      tags:
+      - Companies
+      summary: Update a company
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyUpdate'
+      responses:
+        '200':
+          description: The updated company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+  /companies/{id}/archive:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    post:
+      operationId: archiveCompany
+      tags:
+      - Companies
+      summary: Archive a company
+      responses:
+        '200':
+          description: The archived company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+  /companies/{id}/unarchive:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    post:
+      operationId: unarchiveCompany
+      tags:
+      - Companies
+      summary: Unarchive a company
+      responses:
+        '200':
+          description: The unarchived company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+  /companies/{id}/invite:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    post:
+      operationId: inviteCompany
+      tags:
+      - Companies
+      summary: Invite a company
+      description: Sends or re-sends an invitation for the company to provide payment information.
+      responses:
+        '200':
+          description: The invited company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        default: 25
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+  schemas:
+    Company:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          description: Whether the company is a vendor, customer, or both.
+          enum:
+          - vendor
+          - customer
+          - both
+        status:
+          type: string
+          description: Onboarding status of the company.
+          enum:
+          - pending
+          - invited
+          - accepted
+          - archived
+        email:
+          type: string
+          format: email
+        is_archived:
+          type: boolean
+        date_created:
+          type: string
+          format: date-time
+        date_modified:
+          type: string
+          format: date-time
+    CompanyUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+    CompanyCreate:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - vendor
+          - customer
+          - both
+        email:
+          type: string
+          format: email
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+    CompanyList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token presented as `Authorization: Bearer {your_token}`. Generate tokens in the Routable dashboard. A sandbox environment is available for testing without moving real money.'

@@ -1,0 +1,249 @@
+openapi: 3.0.1
+info:
+  title: Routable Companies Payables API
+  description: Specification of the Routable v1 REST API for B2B payments, accounts payable and receivable automation, and mass payouts. Manage vendor and customer companies, contacts, payment methods, funding accounts, payables, receivables, and webhook events. All requests are JSON over HTTPS and authenticated with a Bearer API token.
+  termsOfService: https://www.routable.com/terms-of-service/
+  contact:
+    name: Routable Support
+    url: https://developers.routable.com/docs
+  version: '1.0'
+servers:
+- url: https://api.routable.com/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Payables
+  description: Bills owed to vendors.
+paths:
+  /payables:
+    get:
+      operationId: listPayables
+      tags:
+      - Payables
+      summary: List payables
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/StartingAfter'
+      responses:
+        '200':
+          description: A list of payables.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayableList'
+    post:
+      operationId: createPayable
+      tags:
+      - Payables
+      summary: Create a payable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayableCreate'
+      responses:
+        '201':
+          description: The created payable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payable'
+  /payables/{id}:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    get:
+      operationId: retrievePayable
+      tags:
+      - Payables
+      summary: Retrieve a payable
+      responses:
+        '200':
+          description: The requested payable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payable'
+    patch:
+      operationId: updatePayable
+      tags:
+      - Payables
+      summary: Update a payable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayableCreate'
+      responses:
+        '200':
+          description: The updated payable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payable'
+  /payables/{id}/cancel:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    post:
+      operationId: cancelPayable
+      tags:
+      - Payables
+      summary: Cancel a payable
+      responses:
+        '200':
+          description: The cancelled payable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payable'
+  /payables/{id}/remind:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    post:
+      operationId: remindPayable
+      tags:
+      - Payables
+      summary: Send a payable reminder
+      responses:
+        '200':
+          description: Reminder sent.
+  /payables/{id}/estimate:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    post:
+      operationId: estimatePayableFees
+      tags:
+      - Payables
+      summary: Estimate fees for a payable
+      responses:
+        '200':
+          description: Fee estimate.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fee:
+                    type: string
+                  total:
+                    type: string
+                  currency:
+                    type: string
+  /payables/{id}/confirmation:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    get:
+      operationId: downloadPayableConfirmation
+      tags:
+      - Payables
+      summary: Download confirmation PDF
+      responses:
+        '200':
+          description: Confirmation PDF.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        default: 25
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+  schemas:
+    PayableCreate:
+      type: object
+      required:
+      - company
+      - amount
+      properties:
+        company:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+          default: USD
+        reference_code:
+          type: string
+        due_date:
+          type: string
+          format: date
+        funding_account:
+          type: string
+          description: The funding account id used to source the payment.
+    PayableList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payable'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+    Payable:
+      type: object
+      properties:
+        id:
+          type: string
+        company:
+          type: string
+          description: The vendor company being paid.
+        status:
+          type: string
+          enum:
+          - new
+          - scheduled
+          - processing
+          - completed
+          - cancelled
+          - failed
+        amount:
+          type: string
+        currency:
+          type: string
+        reference_code:
+          type: string
+        due_date:
+          type: string
+          format: date
+        date_created:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token presented as `Authorization: Bearer {your_token}`. Generate tokens in the Routable dashboard. A sandbox environment is available for testing without moving real money.'

@@ -1,0 +1,139 @@
+openapi: 3.0.1
+info:
+  title: Routable Companies Funding Sources API
+  description: Specification of the Routable v1 REST API for B2B payments, accounts payable and receivable automation, and mass payouts. Manage vendor and customer companies, contacts, payment methods, funding accounts, payables, receivables, and webhook events. All requests are JSON over HTTPS and authenticated with a Bearer API token.
+  termsOfService: https://www.routable.com/terms-of-service/
+  contact:
+    name: Routable Support
+    url: https://developers.routable.com/docs
+  version: '1.0'
+servers:
+- url: https://api.routable.com/v1
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Funding Sources
+  description: Funding accounts and the Routable Balance.
+paths:
+  /settings/accounts:
+    get:
+      operationId: listAccounts
+      tags:
+      - Funding Sources
+      summary: List funding accounts
+      responses:
+        '200':
+          description: A list of funding accounts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FundingAccountList'
+  /settings/accounts/{id}:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    get:
+      operationId: retrieveAccount
+      tags:
+      - Funding Sources
+      summary: Retrieve a funding account
+      responses:
+        '200':
+          description: The requested funding account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FundingAccount'
+  /settings/accounts/balance:
+    get:
+      operationId: retrieveBalanceAccount
+      tags:
+      - Funding Sources
+      summary: Retrieve the Routable Balance account
+      responses:
+        '200':
+          description: The Routable Balance account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FundingAccount'
+  /settings/accounts/{id}/deposit:
+    parameters:
+    - $ref: '#/components/parameters/IdPath'
+    post:
+      operationId: depositFunds
+      tags:
+      - Funding Sources
+      summary: Deposit funds into Routable Balance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              properties:
+                amount:
+                  type: string
+                  description: Amount to deposit, as a decimal string.
+      responses:
+        '200':
+          description: The updated funding account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FundingAccount'
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+    FundingAccountList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FundingAccount'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    FundingAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          description: The kind of funding account (e.g., bank or balance).
+        balance:
+          type: string
+          description: Available balance as a decimal string, when applicable.
+        currency:
+          type: string
+        date_created:
+          type: string
+          format: date-time
+  parameters:
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token presented as `Authorization: Bearer {your_token}`. Generate tokens in the Routable dashboard. A sandbox environment is available for testing without moving real money.'
