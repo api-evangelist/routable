@@ -1,0 +1,26 @@
+{
+  "provider": "routable",
+  "sources": [
+    "routable-companies-api-openapi.yml",
+    "routable-contacts-api-openapi.yml",
+    "routable-funding-sources-api-openapi.yml",
+    "routable-payables-api-openapi.yml",
+    "routable-payment-methods-api-openapi.yml",
+    "routable-receivables-api-openapi.yml",
+    "routable-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "routable-companies-api-openapi.yml",
+    "routable-contacts-api-openapi.yml",
+    "routable-funding-sources-api-openapi.yml",
+    "routable-payables-api-openapi.yml",
+    "routable-payment-methods-api-openapi.yml",
+    "routable-receivables-api-openapi.yml",
+    "routable-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
