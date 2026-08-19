@@ -1,0 +1,621 @@
+{
+  "item": [
+    {
+      "id": "16103520-6cad-4c6a-8902-e6acd8a34276",
+      "name": "Receivables",
+      "description": {
+        "content": "Amounts owed to you by customers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89448732-0386-41c0-808a-acfc7fad9c18",
+          "name": "List receivables",
+          "request": {
+            "name": "List receivables",
+            "description": {},
+            "url": {
+              "path": [
+                "receivables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<string>",
+                  "description": "Cursor for pagination; the id of the last record on the previous page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e321c5c-5117-4fb6-ad1f-c4d3917d45f7",
+              "name": "A list of receivables.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "receivables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "starting_after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"company\": \"string\",\n      \"status\": \"completed\",\n      \"amount\": \"string\",\n      \"currency\": \"string\",\n      \"reference_code\": \"string\",\n      \"due_date\": \"1964-06-18\",\n      \"date_created\": \"1984-08-28T18:32:18.180Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"company\": \"string\",\n      \"status\": \"new\",\n      \"amount\": \"string\",\n      \"currency\": \"string\",\n      \"reference_code\": \"string\",\n      \"due_date\": \"2007-04-13\",\n      \"date_created\": \"1957-04-28T11:44:37.772Z\"\n    }\n  ],\n  \"pagination\": {\n    \"count\": 7521,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c782e53f-a37b-4d58-a708-c5827cc284b0",
+          "name": "Create a receivable",
+          "request": {
+            "name": "Create a receivable",
+            "description": {},
+            "url": {
+              "path": [
+                "receivables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"<string>\",\n  \"due_date\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba6eb0c8-4ff4-4844-bd0a-7e3dfa2f33c6",
+              "name": "The created receivable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "receivables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"<string>\",\n  \"due_date\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"failed\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"reference_code\": \"string\",\n  \"due_date\": \"1959-04-16\",\n  \"date_created\": \"2012-10-21T14:21:35.376Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a130dc56-2ef7-4f24-9428-71c2bc9a2ded",
+          "name": "Retrieve a receivable",
+          "request": {
+            "name": "Retrieve a receivable",
+            "description": {},
+            "url": {
+              "path": [
+                "receivables",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdfdc44e-4e7d-4bda-8f89-bf72c9db9c6f",
+              "name": "The requested receivable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "receivables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"failed\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"reference_code\": \"string\",\n  \"due_date\": \"1959-04-16\",\n  \"date_created\": \"2012-10-21T14:21:35.376Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd356c9e-7507-476d-a62f-f89d249d7b03",
+          "name": "Update a receivable",
+          "request": {
+            "name": "Update a receivable",
+            "description": {},
+            "url": {
+              "path": [
+                "receivables",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"<string>\",\n  \"due_date\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff087426-11c5-426c-88d7-8f145c44f99a",
+              "name": "The updated receivable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "receivables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"<string>\",\n  \"due_date\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"failed\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"reference_code\": \"string\",\n  \"due_date\": \"1959-04-16\",\n  \"date_created\": \"2012-10-21T14:21:35.376Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "804c2caf-e77a-4d2d-89db-b18c9ce66336",
+          "name": "Cancel a receivable",
+          "request": {
+            "name": "Cancel a receivable",
+            "description": {},
+            "url": {
+              "path": [
+                "receivables",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5658be9-d27f-4042-b4a7-9fd0927bf266",
+              "name": "The cancelled receivable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "receivables",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"failed\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"reference_code\": \"string\",\n  \"due_date\": \"1959-04-16\",\n  \"date_created\": \"2012-10-21T14:21:35.376Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4132d5c6-96a7-41c3-84c0-3876e9003dfc",
+          "name": "Send a receivable reminder",
+          "request": {
+            "name": "Send a receivable reminder",
+            "description": {},
+            "url": {
+              "path": [
+                "receivables",
+                ":id",
+                "remind"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5a69c57-0af2-4115-adce-83beec9f28cd",
+              "name": "Reminder sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "receivables",
+                    ":id",
+                    "remind"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.routable.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fa43b842-cc35-4c9f-9a46-48a61fadc8e6",
+    "name": "Routable Companies Receivables API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the Routable v1 REST API for B2B payments, accounts payable and receivable automation, and mass payouts. Manage vendor and customer companies, contacts, payment methods, funding accounts, payables, receivables, and webhook events. All requests are JSON over HTTPS and authenticated with a Bearer API token.\n\nContact Support:\n Name: Routable Support",
+      "type": "text/plain"
+    }
+  }
+}

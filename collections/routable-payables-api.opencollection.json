@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Routable Companies Payables API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/payables",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination; the id of the last record on the previous page."
+              }
+            ]
+          },
+          "docs": "List payables"
+        },
+        {
+          "info": {
+            "name": "Create a payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a payable"
+        },
+        {
+          "info": {
+            "name": "Retrieve a payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/payables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a payable"
+        },
+        {
+          "info": {
+            "name": "Update a payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.routable.com/v1/payables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a payable"
+        },
+        {
+          "info": {
+            "name": "Cancel a payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payables/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Cancel a payable"
+        },
+        {
+          "info": {
+            "name": "Send a payable reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payables/:id/remind",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Send a payable reminder"
+        },
+        {
+          "info": {
+            "name": "Estimate fees for a payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/payables/:id/estimate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Estimate fees for a payable"
+        },
+        {
+          "info": {
+            "name": "Download confirmation PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/payables/:id/confirmation",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Download confirmation PDF"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

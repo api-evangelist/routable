@@ -1,0 +1,811 @@
+{
+  "item": [
+    {
+      "id": "c60db8ba-e917-4671-a3df-bd3830c88159",
+      "name": "Payables",
+      "description": {
+        "content": "Bills owed to vendors.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e1062dd-4164-45c7-9488-df7a380e4232",
+          "name": "List payables",
+          "request": {
+            "name": "List payables",
+            "description": {},
+            "url": {
+              "path": [
+                "payables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<string>",
+                  "description": "Cursor for pagination; the id of the last record on the previous page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6f4f635-8fc9-4ff3-8fd7-2ba0256740cf",
+              "name": "A list of payables.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "starting_after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"company\": \"string\",\n      \"status\": \"failed\",\n      \"amount\": \"string\",\n      \"currency\": \"string\",\n      \"reference_code\": \"string\",\n      \"due_date\": \"2001-02-20\",\n      \"date_created\": \"1984-01-20T05:36:13.631Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"company\": \"string\",\n      \"status\": \"completed\",\n      \"amount\": \"string\",\n      \"currency\": \"string\",\n      \"reference_code\": \"string\",\n      \"due_date\": \"1960-06-19\",\n      \"date_created\": \"1991-04-29T11:57:08.608Z\"\n    }\n  ],\n  \"pagination\": {\n    \"count\": 7884,\n    \"next\": \"string\",\n    \"previous\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "febda3ec-bf55-49f8-8d98-45bc24473dec",
+          "name": "Create a payable",
+          "request": {
+            "name": "Create a payable",
+            "description": {},
+            "url": {
+              "path": [
+                "payables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"<string>\",\n  \"due_date\": \"<date>\",\n  \"funding_account\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a480324a-a7a1-4aa5-b0dc-0279b105c2b2",
+              "name": "The created payable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"<string>\",\n  \"due_date\": \"<date>\",\n  \"funding_account\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"new\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"reference_code\": \"string\",\n  \"due_date\": \"1952-03-01\",\n  \"date_created\": \"2002-05-17T21:55:23.157Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e12e176-d486-469d-aa51-c504f4127ff4",
+          "name": "Retrieve a payable",
+          "request": {
+            "name": "Retrieve a payable",
+            "description": {},
+            "url": {
+              "path": [
+                "payables",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d808148-49c5-41e6-9699-ba7e88bf2675",
+              "name": "The requested payable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"new\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"reference_code\": \"string\",\n  \"due_date\": \"1952-03-01\",\n  \"date_created\": \"2002-05-17T21:55:23.157Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbf04a0e-306c-48fa-8f37-e5c04eb2e5fc",
+          "name": "Update a payable",
+          "request": {
+            "name": "Update a payable",
+            "description": {},
+            "url": {
+              "path": [
+                "payables",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"<string>\",\n  \"due_date\": \"<date>\",\n  \"funding_account\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d51768c-4b00-4d57-8e2d-6f3f0ca40480",
+              "name": "The updated payable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payables",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"USD\",\n  \"reference_code\": \"<string>\",\n  \"due_date\": \"<date>\",\n  \"funding_account\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"new\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"reference_code\": \"string\",\n  \"due_date\": \"1952-03-01\",\n  \"date_created\": \"2002-05-17T21:55:23.157Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72f83464-2eef-445b-8c52-2e2a8a845a90",
+          "name": "Cancel a payable",
+          "request": {
+            "name": "Cancel a payable",
+            "description": {},
+            "url": {
+              "path": [
+                "payables",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e2ee768-6a24-4f5d-948f-eb134848989f",
+              "name": "The cancelled payable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payables",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"new\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"reference_code\": \"string\",\n  \"due_date\": \"1952-03-01\",\n  \"date_created\": \"2002-05-17T21:55:23.157Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b14785a-7a18-47a8-88e3-372ba2408fc0",
+          "name": "Send a payable reminder",
+          "request": {
+            "name": "Send a payable reminder",
+            "description": {},
+            "url": {
+              "path": [
+                "payables",
+                ":id",
+                "remind"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce8d0844-177f-45d6-a114-12d5b92c0e3d",
+              "name": "Reminder sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payables",
+                    ":id",
+                    "remind"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81d53f65-5377-497f-a845-24a7c0a862ce",
+          "name": "Estimate fees for a payable",
+          "request": {
+            "name": "Estimate fees for a payable",
+            "description": {},
+            "url": {
+              "path": [
+                "payables",
+                ":id",
+                "estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19f190ed-ecea-41f7-bfd9-9b47a2bc8bdf",
+              "name": "Fee estimate.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payables",
+                    ":id",
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fee\": \"string\",\n  \"total\": \"string\",\n  \"currency\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e15e0605-c745-4947-a2d9-c3b5b2c35dd0",
+          "name": "Download confirmation PDF",
+          "request": {
+            "name": "Download confirmation PDF",
+            "description": {},
+            "url": {
+              "path": [
+                "payables",
+                ":id",
+                "confirmation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3af3a80-83f6-4765-aeaf-380621ceb1e0",
+              "name": "Confirmation PDF.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payables",
+                    ":id",
+                    "confirmation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.routable.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c9bfd80-4bba-4da3-b65d-2ab73104e234",
+    "name": "Routable Companies Payables API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Specification of the Routable v1 REST API for B2B payments, accounts payable and receivable automation, and mass payouts. Manage vendor and customer companies, contacts, payment methods, funding accounts, payables, receivables, and webhook events. All requests are JSON over HTTPS and authenticated with a Bearer API token.\n\nContact Support:\n Name: Routable Support",
+      "type": "text/plain"
+    }
+  }
+}

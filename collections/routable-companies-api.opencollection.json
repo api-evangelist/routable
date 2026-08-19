@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Routable Companies API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/companies",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination; the id of the last record on the previous page."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of vendor and customer companies."
+        },
+        {
+          "info": {
+            "name": "Create a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new vendor or customer company."
+        },
+        {
+          "info": {
+            "name": "Retrieve a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/companies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a company"
+        },
+        {
+          "info": {
+            "name": "Update a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.routable.com/v1/companies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a company"
+        },
+        {
+          "info": {
+            "name": "Archive a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/companies/:id/archive",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Archive a company"
+        },
+        {
+          "info": {
+            "name": "Unarchive a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/companies/:id/unarchive",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Unarchive a company"
+        },
+        {
+          "info": {
+            "name": "Invite a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/companies/:id/invite",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Sends or re-sends an invitation for the company to provide payment information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

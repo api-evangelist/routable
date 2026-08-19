@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Routable Companies Receivables API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Receivables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List receivables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/receivables",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination; the id of the last record on the previous page."
+              }
+            ]
+          },
+          "docs": "List receivables"
+        },
+        {
+          "info": {
+            "name": "Create a receivable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/receivables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a receivable"
+        },
+        {
+          "info": {
+            "name": "Retrieve a receivable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.routable.com/v1/receivables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieve a receivable"
+        },
+        {
+          "info": {
+            "name": "Update a receivable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.routable.com/v1/receivables/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a receivable"
+        },
+        {
+          "info": {
+            "name": "Cancel a receivable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/receivables/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Cancel a receivable"
+        },
+        {
+          "info": {
+            "name": "Send a receivable reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.routable.com/v1/receivables/:id/remind",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Send a receivable reminder"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
