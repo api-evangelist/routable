@@ -27,6 +27,13 @@ tags:
 - Accounts Receivable
 - B2B Payments
 - Mass Payouts
+- Fintech
+tags_raw:
+- Payments
+- Accounts Payable
+- Accounts Receivable
+- B2B Payments
+- Mass Payouts
 - FinTech
 created: '2026-06-21'
 modified: '2026-06-21'
@@ -206,6 +213,8 @@ apis:
   humanURL: https://developers.routable.com/reference/introduction
   baseURL: https://api.routable.com/v1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
