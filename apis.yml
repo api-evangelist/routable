@@ -7,6 +7,18 @@ description: Routable is a B2B payments platform automating accounts payable and
   lets teams onboard vendors and customers, collect payment and tax information,
   create payables and receivables, and move money via ACH, SWIFT, and check to more
   than 200 countries, with webhook events for end-to-end automation.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
