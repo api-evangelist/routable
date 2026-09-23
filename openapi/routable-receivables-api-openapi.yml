@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Routable Companies Receivables API
+  title: Routable Receivables API
   description: Specification of the Routable v1 REST API for B2B payments, accounts payable and receivable automation, and mass payouts. Manage vendor and customer companies, contacts, payment methods, funding accounts, payables, receivables, and webhook events. All requests are JSON over HTTPS and authenticated with a Bearer API token.
   termsOfService: https://www.routable.com/terms-of-service/
   contact:
@@ -119,13 +119,6 @@ components:
       schema:
         type: integer
         default: 25
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last record on the previous page.
-      schema:
-        type: string
     IdPath:
       name: id
       in: path
@@ -133,7 +126,45 @@ components:
       description: The unique identifier of the resource.
       schema:
         type: string
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
   schemas:
+    ReceivableCreate:
+      type: object
+      required:
+      - company
+      - amount
+      properties:
+        company:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+          default: USD
+        reference_code:
+          type: string
+        due_date:
+          type: string
+          format: date
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
     Receivable:
       type: object
       properties:
@@ -172,35 +203,6 @@ components:
             $ref: '#/components/schemas/Receivable'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    ReceivableCreate:
-      type: object
-      required:
-      - company
-      - amount
-      properties:
-        company:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-          default: USD
-        reference_code:
-          type: string
-        due_date:
-          type: string
-          format: date
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
   securitySchemes:
     bearerAuth:
       type: http

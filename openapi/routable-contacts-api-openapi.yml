@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Routable Companies Contacts API
+  title: Routable Contacts API
   description: Specification of the Routable v1 REST API for B2B payments, accounts payable and receivable automation, and mass payouts. Manage vendor and customer companies, contacts, payment methods, funding accounts, payables, receivables, and webhook events. All requests are JSON over HTTPS and authenticated with a Bearer API token.
   termsOfService: https://www.routable.com/terms-of-service/
   contact:
@@ -93,13 +93,6 @@ components:
       schema:
         type: integer
         default: 25
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last record on the previous page.
-      schema:
-        type: string
     IdPath:
       name: id
       in: path
@@ -107,7 +100,31 @@ components:
       description: The unique identifier of the resource.
       schema:
         type: string
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
   schemas:
+    ContactCreate:
+      type: object
+      required:
+      - company
+      - email
+      properties:
+        company:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
     Contact:
       type: object
       properties:
@@ -137,34 +154,19 @@ components:
             $ref: '#/components/schemas/Contact'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    ContactCreate:
-      type: object
-      required:
-      - company
-      - email
-      properties:
-        company:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
     Pagination:
       type: object
       properties:
         count:
           type: integer
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
   securitySchemes:
     bearerAuth:
       type: http

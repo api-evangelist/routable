@@ -1,13 +1,7 @@
 {
   "provider": "routable",
   "sources": [
-    "routable-companies-api-openapi.yml",
-    "routable-contacts-api-openapi.yml",
-    "routable-funding-sources-api-openapi.yml",
-    "routable-payables-api-openapi.yml",
-    "routable-payment-methods-api-openapi.yml",
-    "routable-receivables-api-openapi.yml",
-    "routable-webhooks-api-openapi.yml"
+    "_original/routable-openapi.yml"
   ],
   "outputs": [
     "routable-companies-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "routable-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "routable-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "routable-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "routable-funding-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "routable-payables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "routable-payment-methods-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "routable-receivables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "routable-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

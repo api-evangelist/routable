@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Routable Companies Funding Sources API
+  title: Routable Funding Sources API
   description: Specification of the Routable v1 REST API for B2B payments, accounts payable and receivable automation, and mass payouts. Manage vendor and customer companies, contacts, payment methods, funding accounts, payables, receivables, and webhook events. All requests are JSON over HTTPS and authenticated with a Bearer API token.
   termsOfService: https://www.routable.com/terms-of-service/
   contact:
@@ -86,26 +86,6 @@ paths:
                 $ref: '#/components/schemas/FundingAccount'
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type: string
-          nullable: true
-        previous:
-          type: string
-          nullable: true
-    FundingAccountList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FundingAccount'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     FundingAccount:
       type: object
       properties:
@@ -124,6 +104,28 @@ components:
         date_created:
           type: string
           format: date-time
+    FundingAccountList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FundingAccount'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
   parameters:
     IdPath:
       name: id
