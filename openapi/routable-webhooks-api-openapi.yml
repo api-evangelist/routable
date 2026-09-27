@@ -63,6 +63,49 @@ paths:
               schema:
                 $ref: '#/components/schemas/WebhookEvent'
 components:
+  schemas:
+    WebhookEventList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookEvent'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+    WebhookEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        event_type:
+          type: string
+          description: The type of event, e.g. payable.completed or company.accepted.
+        status:
+          type: string
+          enum:
+          - pending
+          - delivered
+          - failed
+        payload:
+          type: object
+          additionalProperties: true
+        date_created:
+          type: string
+          format: date-time
   parameters:
     Limit:
       name: limit
@@ -86,49 +129,6 @@ components:
       description: Cursor for pagination; the id of the last record on the previous page.
       schema:
         type: string
-  schemas:
-    WebhookEventList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WebhookEvent'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    WebhookEvent:
-      type: object
-      properties:
-        id:
-          type: string
-        event_type:
-          type: string
-          description: The type of event, e.g. payable.completed or company.accepted.
-        status:
-          type: string
-          enum:
-          - pending
-          - delivered
-          - failed
-        payload:
-          type: object
-          additionalProperties: true
-        date_created:
-          type: string
-          format: date-time
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
   securitySchemes:
     bearerAuth:
       type: http

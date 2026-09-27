@@ -133,20 +133,20 @@ paths:
                 $ref: '#/components/schemas/Company'
 components:
   schemas:
-    CompanyList:
+    CompanyCreate:
       type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Company'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    CompanyUpdate:
-      type: object
+      required:
+      - name
+      - type
       properties:
         name:
           type: string
+        type:
+          type: string
+          enum:
+          - vendor
+          - customer
+          - both
         email:
           type: string
           format: email
@@ -183,6 +183,14 @@ components:
         date_modified:
           type: string
           format: date-time
+    CompanyUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
     Pagination:
       type: object
       properties:
@@ -196,23 +204,15 @@ components:
           type:
           - string
           - 'null'
-    CompanyCreate:
+    CompanyList:
       type: object
-      required:
-      - name
-      - type
       properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - vendor
-          - customer
-          - both
-        email:
-          type: string
-          format: email
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
   parameters:
     Limit:
       name: limit

@@ -148,59 +148,7 @@ paths:
                 type: string
                 format: binary
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        default: 25
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last record on the previous page.
-      schema:
-        type: string
   schemas:
-    Payable:
-      type: object
-      properties:
-        id:
-          type: string
-        company:
-          type: string
-          description: The vendor company being paid.
-        status:
-          type: string
-          enum:
-          - new
-          - scheduled
-          - processing
-          - completed
-          - cancelled
-          - failed
-        amount:
-          type: string
-        currency:
-          type: string
-        reference_code:
-          type: string
-        due_date:
-          type: string
-          format: date
-        date_created:
-          type: string
-          format: date-time
     PayableCreate:
       type: object
       required:
@@ -244,6 +192,58 @@ components:
           type:
           - string
           - 'null'
+    Payable:
+      type: object
+      properties:
+        id:
+          type: string
+        company:
+          type: string
+          description: The vendor company being paid.
+        status:
+          type: string
+          enum:
+          - new
+          - scheduled
+          - processing
+          - completed
+          - cancelled
+          - failed
+        amount:
+          type: string
+        currency:
+          type: string
+        reference_code:
+          type: string
+        due_date:
+          type: string
+          format: date
+        date_created:
+          type: string
+          format: date-time
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        default: 25
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
