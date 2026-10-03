@@ -94,6 +94,23 @@ components:
             $ref: '#/components/schemas/Contact'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    ContactCreate:
+      type: object
+      required:
+      - company
+      - email
+      properties:
+        company:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
     Pagination:
       type: object
       properties:
@@ -127,32 +144,7 @@ components:
         date_created:
           type: string
           format: date-time
-    ContactCreate:
-      type: object
-      required:
-      - company
-      - email
-      properties:
-        company:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
   parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        default: 25
     IdPath:
       name: id
       in: path
@@ -167,6 +159,14 @@ components:
       description: Cursor for pagination; the id of the last record on the previous page.
       schema:
         type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        default: 25
   securitySchemes:
     bearerAuth:
       type: http

@@ -110,61 +110,7 @@ paths:
         '200':
           description: Reminder sent.
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        default: 25
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last record on the previous page.
-      schema:
-        type: string
   schemas:
-    ReceivableCreate:
-      type: object
-      required:
-      - company
-      - amount
-      properties:
-        company:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-          default: USD
-        reference_code:
-          type: string
-        due_date:
-          type: string
-          format: date
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
     Receivable:
       type: object
       properties:
@@ -194,6 +140,19 @@ components:
         date_created:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
     ReceivableList:
       type: object
       properties:
@@ -203,6 +162,47 @@ components:
             $ref: '#/components/schemas/Receivable'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    ReceivableCreate:
+      type: object
+      required:
+      - company
+      - amount
+      properties:
+        company:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+          default: USD
+        reference_code:
+          type: string
+        due_date:
+          type: string
+          format: date
+  parameters:
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        default: 25
   securitySchemes:
     bearerAuth:
       type: http

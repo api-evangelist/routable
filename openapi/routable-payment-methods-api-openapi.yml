@@ -132,19 +132,6 @@ components:
           enum:
           - checking
           - savings
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
     PaymentMethod:
       type: object
       properties:
@@ -167,6 +154,19 @@ components:
         date_created:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
     PaymentMethodList:
       type: object
       properties:
@@ -177,14 +177,6 @@ components:
         pagination:
           $ref: '#/components/schemas/Pagination'
   parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        default: 25
     IdPath:
       name: id
       in: path
@@ -199,6 +191,14 @@ components:
       description: Cursor for pagination; the id of the last record on the previous page.
       schema:
         type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        default: 25
   securitySchemes:
     bearerAuth:
       type: http
