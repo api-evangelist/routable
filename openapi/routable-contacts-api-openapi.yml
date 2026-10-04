@@ -85,45 +85,6 @@ paths:
                 $ref: '#/components/schemas/Contact'
 components:
   schemas:
-    ContactList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    ContactCreate:
-      type: object
-      required:
-      - company
-      - email
-      properties:
-        company:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
     Contact:
       type: object
       properties:
@@ -144,19 +105,58 @@ components:
         date_created:
           type: string
           format: date-time
+    ContactCreate:
+      type: object
+      required:
+      - company
+      - email
+      properties:
+        company:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+    ContactList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
   parameters:
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
     StartingAfter:
       name: starting_after
       in: query
       required: false
       description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
       schema:
         type: string
     Limit:

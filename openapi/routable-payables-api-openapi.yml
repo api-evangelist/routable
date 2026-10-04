@@ -148,43 +148,28 @@ paths:
                 type: string
                 format: binary
 components:
-  parameters:
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last record on the previous page.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        default: 25
   schemas:
-    Pagination:
+    PayableCreate:
       type: object
+      required:
+      - company
+      - amount
       properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
+        company:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+          default: USD
+        reference_code:
+          type: string
+        due_date:
+          type: string
+          format: date
+        funding_account:
+          type: string
+          description: The funding account id used to source the payment.
     Payable:
       type: object
       properties:
@@ -223,27 +208,42 @@ components:
             $ref: '#/components/schemas/Payable'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    PayableCreate:
+    Pagination:
       type: object
-      required:
-      - company
-      - amount
       properties:
-        company:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-          default: USD
-        reference_code:
-          type: string
-        due_date:
-          type: string
-          format: date
-        funding_account:
-          type: string
-          description: The funding account id used to source the payment.
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+  parameters:
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        default: 25
   securitySchemes:
     bearerAuth:
       type: http

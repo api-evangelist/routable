@@ -132,6 +132,15 @@ components:
           enum:
           - checking
           - savings
+    PaymentMethodList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethod'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     PaymentMethod:
       type: object
       properties:
@@ -167,28 +176,19 @@ components:
           type:
           - string
           - 'null'
-    PaymentMethodList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PaymentMethod'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   parameters:
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
     StartingAfter:
       name: starting_after
       in: query
       required: false
       description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
       schema:
         type: string
     Limit:

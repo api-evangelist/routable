@@ -132,6 +132,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/Company'
 components:
+  parameters:
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        default: 25
   schemas:
     Company:
       type: object
@@ -166,27 +189,6 @@ components:
         date_modified:
           type: string
           format: date-time
-    CompanyUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
     CompanyCreate:
       type: object
       required:
@@ -204,6 +206,14 @@ components:
         email:
           type: string
           format: email
+    CompanyUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
     CompanyList:
       type: object
       properties:
@@ -213,29 +223,19 @@ components:
             $ref: '#/components/schemas/Company'
         pagination:
           $ref: '#/components/schemas/Pagination'
-  parameters:
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last record on the previous page.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        default: 25
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     bearerAuth:
       type: http
