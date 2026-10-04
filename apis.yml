@@ -251,6 +251,9 @@ apis:
   - type: Documentation
     url: https://developers.routable.com/docs/webhooks
 common:
+- type: CapabilityMap
+  url: capabilities/routable-capability-edges.yml
+  name: Routable Business Capability Map
 - type: AgenticAccess
   url: agentic-access/routable-agentic-access.yml
 - type: DomainSecurity

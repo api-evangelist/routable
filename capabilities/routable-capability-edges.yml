@@ -1,0 +1,34 @@
+slug: routable
+provider: Routable
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Payables
+  spec_file: routable-payables-api-openapi.yml
+  capability_id: BC-200.20
+  capability_id_l1: BC-200
+  capability_name: Accounts Payable Management
+  confidence: 0.92
+  evidence: POST /payables Create a payable; POST /payables/{id}/remind Send a payable reminder; POST
+    /payables/{id}/estimate Estimate fees for a payable
+  reason: Full lifecycle of payables (create, update, cancel, remind, payment confirmation PDF) in an
+    accounts-payable automation platform — plainly Accounts Payable Management.
+- tag: Receivables
+  spec_file: routable-receivables-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.9
+  evidence: POST /receivables Create a receivable; POST /receivables/{id}/remind Send a receivable reminder
+  reason: Creation, update, cancellation and dunning reminders for customer receivables in an AR automation
+    platform — Accounts Receivable Management.
