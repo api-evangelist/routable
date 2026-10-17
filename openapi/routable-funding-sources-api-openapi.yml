@@ -85,15 +85,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/FundingAccount'
 components:
-  parameters:
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
   schemas:
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
     FundingAccount:
       type: object
       properties:
@@ -121,19 +126,14 @@ components:
             $ref: '#/components/schemas/FundingAccount'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
+  parameters:
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

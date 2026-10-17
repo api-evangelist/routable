@@ -107,7 +107,52 @@ paths:
                   valid:
                     type: boolean
 components:
+  parameters:
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        default: 25
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last record on the previous page.
+      schema:
+        type: string
   schemas:
+    PaymentMethodList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethod'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
     PaymentMethodCreate:
       type: object
       required:
@@ -132,15 +177,6 @@ components:
           enum:
           - checking
           - savings
-    PaymentMethodList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PaymentMethod'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     PaymentMethod:
       type: object
       properties:
@@ -163,42 +199,6 @@ components:
         date_created:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-  parameters:
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last record on the previous page.
-      schema:
-        type: string
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        default: 25
   securitySchemes:
     bearerAuth:
       type: http
